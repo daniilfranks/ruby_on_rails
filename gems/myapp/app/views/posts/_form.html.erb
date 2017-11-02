@@ -1,0 +1,70 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :post_title %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :body %>
+    <%#= form.text_area :title, size: "20x30" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :img %>
+    <%= form.file_field :img, id: :post_img %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publication %>
+    <%= check_box('post', 'publication') %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :date %>
+    <%#= select_year(Date.today, start_year: 1900, end_year: 2017) %>
+  </div>
+
+  <div class="field">
+    <%#= radio_button("article", "category", "rails") %>
+  </div>
+
+  <div class="field">
+    <%#= hidden_field(:post, 'publication') %>
+  </div>
+
+  <div class="field">
+    <%#= collection_select(:post, :title, Post.all, :id, :title, { prompt: true }) %>
+  </div>
+
+  <div class="field">
+    <%#= collection_radio_buttons(:post, :title, Post.all, :id, :title) %>
+  </div>
+
+  <div class="field">
+    <%#= collection_check_boxes(:post, :title, Post.all, :id, :title) %>
+  </div>
+
+  <div class="field">
+    <%#= time_zone_select(:person, :time_zone) %>
+  </div>
+
+  <div class="field">
+    <%#= date_select :person, :birth_date, start_year: 1910, end_year: 2018 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

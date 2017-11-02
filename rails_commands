@@ -1,0 +1,131 @@
+# Generate app
+rails new myapp
+rails new myapp --git --database=postgresql
+
+# Start server
+rails s
+rackup -p 3000
+
+# Rails console comands
+bin/rails
+bin/rails -T
+
+# DB console
+rails db
+SELECT * FROM posts;
+
+# Comands list
+rails g
+
+# Rails secret
+rails secret
+
+# App routes
+rails routes
+
+# Scaffold
+rails g scaffold static_pages
+rails g scaffold posts title:string img:string
+
+rails db:migrate
+
+# Generate model
+rails g model Comment commenter:string body:text post:references
+
+# Destroy model
+rails destroy model Comment
+
+# Generate controller
+rails g controller Comments create
+
+# CRUD
+Post.new(title: 'My post')
+Post.create(title: 'My post')
+
+Post.all
+Post.first
+Post.find(1)
+Post.find([1,2])
+Post.find_by(title: 'My post')
+Post.first(5)
+Post.last(5)
+Post.order(:publication).first
+Post.order(created_at: :asc)
+Post.where(title: 'My post', img: nil).order(created_at: :desc)
+Post.where("publication = ?", params[:true])
+Post.where("publication = ? AND id = ?", params[:publication], params[:id])
+Post.where("created_at >= :start_date AND created_at <= :end_date",
+  { start_date: params[:start_date], end_date: params[:end_date] })
+Post.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
+Post.where(id: [1,2,3])
+Post.select("id, title")
+Post.limit(5)
+Post.limit(5).offset(10)
+
+
+post = Post.find_by(title: 'First')
+post.update(title: 'My first post')
+
+post.destroy
+
+# Migration
+string, text, integer, boolean, timestamps
+
+## Create
+rails g migration CreateItems
+rails g migration CreateItems title:string img:string
+
+rails g migration AddDescriptionToItems description:text
+add_column :items, :description, :text
+
+rails g migration AddPriceToItems price:decimal:index
+add_column :items, :price, :decimal, precision: 5, scale: 2
+add_index :items, :price
+
+## Remove
+rails g migration RemoveDescriptionFromItems description:text
+remove_column :items, :description, :text
+
+## References
+rails g migration AddUserRefToItems user:references
+add_reference :items, :user, foreign_key: true
+
+## Join
+rails g migration CreateJoinTableUserItem user item
+create_join_table :users, :items do |t|
+  # t.index [:user_id, :item_id]
+  # t.index [:item_id, :user_id]
+end
+
+## Create table
+create_table :items do |t|
+  t.string :title
+
+  t.timestamps
+end
+
+## Edit table
+change_table :products do |t|
+  t.remove :description
+  t.string :part_number
+  t.index :part_number
+  t.rename :cena, :price
+end
+
+# Откатить миграцию
+rails db:rollback
+rails db:rollback STEP=3
+
+# Сброс базы данных
+rails db:setup
+rails db:reset
+
+# Наполнение базы
+seeds.rb
+rails db:seed
+
+# Validation
+post = Post.create(title: '')
+post.valid?
+post.errors.messages
+post.errors.any?
