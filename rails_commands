@@ -14,6 +14,17 @@ bin/rails -T
 rails db
 SELECT * FROM posts;
 
+# Variables types
+string text integer boolean decimal
+float binary date time datetime
+timestamps
+
+# Migration options
+default: false
+unique: true
+null: false
+limit: 10
+
 # Comands list
 rails g
 
