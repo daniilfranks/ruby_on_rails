@@ -12,13 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :project_name %>
+    <%= form.label :name, t("projects.name") %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :ends_at %>
-    <%= form.date_select :ends_at, id: :project_ends_at %>
+    <%= form.label :description, t("projects.description") %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ends_at, t("projects.ends_at") %>
+    <%= form.date_select :ends_at %>
   </div>
 
   <div class="actions">

@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :tasks do
-    resources :comments, only: [:create]
-  end
 
-  resources :projects
+  scope "/:locale" do
+    resources :tasks do
+      resources :comments, only: [:create]
+    
+      member do
+        patch :toggle
+      end
+    end
+
+    resources :projects
+  end
   
   root 'projects#index'
 end

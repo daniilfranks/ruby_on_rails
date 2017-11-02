@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
   <strong>Ends at:</strong>
   <%= @project.ends_at %>
 </p>
@@ -14,7 +19,7 @@
 
 <% @project.tasks.each do |task| %>
   <%= link_to task.title, task %><br>
-  <%= check_box_tag "task_done_#{task.id}", "", task.done %><br>
+  <%= check_box_tag "task_done_#{task.id}", "", task.done, class: "task_done", data: { id: task.id } %><br>
 <% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

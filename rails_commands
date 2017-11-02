@@ -129,3 +129,4 @@ post = Post.create(title: '')
 post.valid?
 post.errors.messages
 post.errors.any?
+
