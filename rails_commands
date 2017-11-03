@@ -72,6 +72,7 @@ Post.where(id: [1,2,3])
 Post.select("id, title")
 Post.limit(5)
 Post.limit(5).offset(10)
+Post.count
 
 
 post = Post.find_by(title: 'First')

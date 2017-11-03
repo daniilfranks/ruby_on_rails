@@ -4,7 +4,17 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.publishing_post
+    #if params[:publishing_post] == 'true'
+    #  @posts = Post.publishing_post
+    #else
+    #  @posts = Post.all
+    #end
+
+    if params[:title]
+      @posts = Post.where("title = ?", params[:title])
+    else
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1
@@ -76,5 +86,12 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :description, :publishing, :rating)
+    end
+
+    def check_auth
+      if session[:user_id] != @post.user_id
+        flash[:notice] = 'Error!'
+        redirect_to posts_path
+      end
     end
 end
