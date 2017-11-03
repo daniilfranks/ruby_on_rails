@@ -77,6 +77,8 @@ Post.count
 
 post = Post.find_by(title: 'First')
 post.update(title: 'My first post')
+post.update(post_params)
+post.update_columns(post_params)
 
 post.destroy
 
