@@ -78,6 +78,8 @@ class PostsController < ApplicationController
   end
 
   def info
+    @posts = Post.random_content
+    session[:secret_id] = 1
   end
 
   private

@@ -10,7 +10,20 @@ class Post < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
-  private
+  protected
+
+  def self.random_content
+    case rand(2)
+    when 1
+      Post.all
+    else
+      Post.none
+    end
+  end
+
+  def self.all_posts
+    Post.all
+  end
 
   #def increment_rating
   #  self.rating += 1
