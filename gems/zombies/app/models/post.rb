@@ -4,11 +4,13 @@ class Post < ApplicationRecord
   scope :rating_post, -> { where("rating > 10") }
   scope :desc_post, -> { order("created_at desc").limit(5) }
 
-  before_save :increment_rating
+  #before_save :increment_rating
+
+  has_many :comments, dependent: :destroy
 
   private
 
-  def increment_rating
-    self.rating += 1
-  end
+  #def increment_rating
+  #  self.rating += 1
+  #end
 end

@@ -18,6 +18,7 @@
 <p>
   <strong>Rating:</strong>
   <%= @post.rating %>
+  <%= link_to '+', increment_post_path, method: :patch %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

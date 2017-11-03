@@ -141,3 +141,18 @@ post.valid?
 post.errors.messages
 post.errors.any?
 
+#Forms helpers
+<%= f.text_field :title %>
+<%= f.text_aria :description %>
+<%= f.check_box_tag :publishing %>
+<%= f.radio_button_tag :plane_1, checked: true %>
+<%= f.select :cars, ['BMW', 'LADA', 'OPEL'] %>
+<%= f.select :cars, [['BMW', 0], ['LADA', 1], ['OPEL', 2]] %>
+<%= f.password_field_tag :password %>
+<%= telephone_field :phone %>
+<%= f.number_field :price %>
+<%= f.email_field :email %>
+<%= f.url_field :website %>
+<%= f.submit %>
+
+<%= form_for([@post, @comment]) do |f| %>
