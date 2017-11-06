@@ -130,6 +130,11 @@ end
 rails db:rollback
 rails db:rollback STEP=3
 
+# Дропнуть базу
+rails db:drop
+rails db:migrate
+rails db:seed
+
 # Сброс базы данных
 rails db:setup
 rails db:reset

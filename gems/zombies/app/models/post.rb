@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   #before_save :increment_rating
 
   has_many :comments, dependent: :destroy
+  has_and_belongs_to_many :categories
 
   protected
 
