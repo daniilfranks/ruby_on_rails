@@ -9,6 +9,8 @@ rackup -p 3000
 # Rails console comands
 bin/rails
 bin/rails -T
+rails c
+rails c --sandbox
 
 # DB console
 rails db
