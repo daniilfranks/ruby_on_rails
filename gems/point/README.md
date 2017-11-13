@@ -6,3 +6,6 @@ git commit -m '[#1] Scaffold Url'
 create file .rubocop.yml
 rubocop -a
 rubocop -R
+
+migration
+t.string :url, null: false

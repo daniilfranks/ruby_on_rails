@@ -6,6 +6,9 @@ rails new myapp --git --database=postgresql
 rails s
 rackup -p 3000
 
+# Console
+htop
+
 # Rails console comands
 bin/rails
 bin/rails -T
@@ -35,6 +38,7 @@ rails secret
 
 # App routes
 rails routes
+rails routes | grep posts
 
 # Scaffold
 rails g scaffold static_pages
@@ -75,11 +79,13 @@ Post.select("id, title")
 Post.limit(5)
 Post.limit(5).offset(10)
 Post.count
-
+Post.delete_all
 
 post = Post.find_by(title: 'First')
 post.update(title: 'My first post')
 post.update(post_params)
+post.update_attributes(title: 'New title', img: '/img/ruby.png')
+post.update_attribute(title: 'My title')
 post.update_columns(post_params)
 
 post.destroy
