@@ -9,6 +9,21 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/users">Users</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/tasks">Tasks</a></li>
+      <% if current_user %>
+        <li>User name: <%= current_user.name %></li>
+      <% else %>
+        <li><%= link_to 'Sign up', new_user_path %></li>
+      <% end %>
+    </ul>
     <%= yield %>
   </body>
 </html>
