@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :hide_admin_page, only:[:update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.includes(:tasks)
+    @projects = Project.includes(:user, :tasks)
   end
 
   # GET /projects/1

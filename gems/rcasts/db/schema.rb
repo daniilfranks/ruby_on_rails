@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171115065905) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_projects_on_name", unique: true
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20171115065905) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["title"], name: "index_tasks_on_title", unique: true
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -39,8 +41,11 @@ ActiveRecord::Schema.define(version: 20171115065905) do
     t.string "name"
     t.string "email"
     t.string "password"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
 end
