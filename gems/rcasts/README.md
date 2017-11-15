@@ -7,4 +7,12 @@ rails g controller admin/dashboard index
 
 #Bootstrap
 gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'jquery-rails'
 
+app/assets/stylesheets/application.scss
+@import "bootstrap";
+
+app/assets/javascripts/application..js
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
