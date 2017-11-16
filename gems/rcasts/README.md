@@ -7,6 +7,8 @@ rails g controller sessions new destroy
 
 rails g controller admin/dashboard index
 
+rails g scaffold homework name:string complete:boolean
+
 #Bootstrap
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'

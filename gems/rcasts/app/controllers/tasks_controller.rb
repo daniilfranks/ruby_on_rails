@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.position.page params[:page]
+    @last_day_tasks = Task.last_day_tasks
   end
 
   # GET /tasks/1
@@ -41,7 +42,14 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
-      if @task.update(task_params)
+      if @task.update(title: params[:task][:title],
+                      description: params[:task][:description],
+                      complete: params[:task][:complete],
+                      priority: params[:task][:priority],
+                      position: params[:task][:position],
+                      project_id: params[:task][:project_id],
+                      created_at: "#{params[:task]['created_at(1i)']}-#{params[:task]['created_at(2i)']}-#{params[:task]['created_at(3i)']} #{params[:task]['created_at(4i)']}:#{params[:task]['created_at(5i)']}"
+                      )
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
