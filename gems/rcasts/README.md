@@ -20,3 +20,16 @@ app/assets/javascripts/application..js
 //= require bootstrap-sprockets
 
 log/bullet.log
+
+# Kaminari
+gem 'kaminari'
+
+rails g kaminari:config
+config/initializers/kaminari_config.rb
+config.default_per_page = 10
+
+controller
+Task.position.page params[:page]
+
+index.html.erb
+<%= paginate @tasks %>

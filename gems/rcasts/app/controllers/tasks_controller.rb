@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.position
+    @tasks = Task.position.page params[:page]
   end
 
   # GET /tasks/1

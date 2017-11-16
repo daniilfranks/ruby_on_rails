@@ -7,6 +7,10 @@ module ApplicationHelper
     }[flash_type.to_sym] || flash_type.to_s
   end
 
+  def full_title(page_title = '')
+    page_title.empty? ? 'Rcast' : page_title
+  end
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
