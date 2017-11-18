@@ -7,7 +7,10 @@ rails g controller sessions new destroy
 
 rails g controller admin/dashboard index
 
-rails g scaffold homework name:string complete:boolean
+rails g scaffold homeworks name:string complete:boolean
+
+rails g scaffold categories name:string
+rails g model category_homeworks category:references homework:references
 
 #Bootstrap
 gem 'bootstrap', '~> 4.0.0.beta2.1'

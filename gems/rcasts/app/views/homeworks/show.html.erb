@@ -10,5 +10,9 @@
   <%= @homework.complete %>
 </p>
 
+<p>
+  In Categories: <%= @homework.categories.map(&:name).join(',') %>
+</p>
+
 <%= link_to 'Edit', edit_homework_path(@homework) %> |
 <%= link_to 'Back', homeworks_path %>

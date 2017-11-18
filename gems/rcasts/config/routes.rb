@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   resources :homeworks
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'
