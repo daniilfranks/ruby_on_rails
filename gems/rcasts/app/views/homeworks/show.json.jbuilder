@@ -1,1 +1,1 @@
-json.partial! "homeworks/homework", homework: @homework
+json.partial! 'homeworks/homework', homework: @homework

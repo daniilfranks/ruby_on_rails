@@ -1,5 +1,5 @@
 class HomeworksController < ApplicationController
-  before_action :set_homework, only: [:show, :edit, :update, :destroy]
+  before_action :set_homework, only: %i[show edit update destroy]
 
   # GET /homeworks
   # GET /homeworks.json
@@ -10,8 +10,7 @@ class HomeworksController < ApplicationController
 
   # GET /homeworks/1
   # GET /homeworks/1.json
-  def show
-  end
+  def show; end
 
   # GET /homeworks/new
   def new
@@ -19,8 +18,7 @@ class HomeworksController < ApplicationController
   end
 
   # GET /homeworks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /homeworks
   # POST /homeworks.json
@@ -63,13 +61,14 @@ class HomeworksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_homework
-      @homework = Homework.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def homework_params
-      params.require(:homework).permit(:name, :complete, { category_ids: []} )
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_homework
+    @homework = Homework.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def homework_params
+    params.require(:homework).permit(:name, :complete, :new_category_name, category_ids: [])
+  end
 end
