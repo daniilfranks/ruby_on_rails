@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @article.description %>
+</p>
+
+<p>
+  <strong>Is published:</strong>
+  <%= @article.is_published %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @article.user.name %>
+</p>
+
+<p>
+  <strong>Votes</strong>
+  <%= @article.votes.size %><br>
+  <%= form_tag article_votes_path(@article), method: :patch do %>
+    <%= submit_tag 'Vote for it' %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

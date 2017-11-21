@@ -42,7 +42,7 @@ rails routes | grep posts
 
 # Scaffold
 rails g scaffold static_pages
-rails g scaffold posts title:string img:string
+rails g scaffold posts title:string img:string short_description:text full_description:text
 
 rails db:migrate
 
@@ -141,6 +141,7 @@ rails db:rollback STEP=3
 # Дропнуть базу
 rails db:drop
 rails db:migrate
+
 rails db:seed
 
 # Сброс базы данных

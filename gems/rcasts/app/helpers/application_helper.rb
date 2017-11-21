@@ -34,6 +34,4 @@ module ApplicationHelper
   def hide_admin_page
     redirect_to root_path, alert: 'unauthorized admin access' unless admin?
   end
-
-  delegate :admin?, to: :current_user
 end
