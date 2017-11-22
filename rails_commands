@@ -50,6 +50,7 @@ rails db:migrate
 rails g model Comment commenter:string body:text post:references
 
 # Destroy model
+rails destroy controller Comments
 rails destroy model Comment
 
 # Generate controller
@@ -135,6 +136,8 @@ change_table :products do |t|
 end
 
 # Откатить миграцию
+rake db:migrate VERSION=0
+
 rails db:rollback
 rails db:rollback STEP=3
 
