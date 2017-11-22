@@ -58,3 +58,21 @@ create folder spec/support
 database_cleaner.rb
 factory_bot.rb
 shoulda_matchers.rb
+
+config/environments/development.rb
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+  end
+
+spec/spec_helper.rb
+require 'simplecov'
+SimpleCov.start
+
+.gitignore
+coverage
+
+rspec
+/home/boban/ruby_on_rails/gems/rcasts/coverage

@@ -40,6 +40,7 @@ index.html.erb
 <%= paginate @tasks %>
 
 # Rspec
+# https://relishapp.com/rspec
 # https://relishapp.com/rspec/rspec-rails/docs
 rails generate rspec:install
 rspec
@@ -57,7 +58,7 @@ end
 create folder spec/factories
 
 rails stats
-# /home/boban/ruby_on_rails/gems/rcasts/coverage
+# /home/boban/ruby_on_rails/gems/rcasts2/coverage
 
 rails g rspec:feature projects
 
@@ -101,3 +102,6 @@ create file .rubocop.yml
 rubocop -a
 rubocop -R
 
+spec/spec_helper.rb
+require 'simplecov'
+SimpleCov.start

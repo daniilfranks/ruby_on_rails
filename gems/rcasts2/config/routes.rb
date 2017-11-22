@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'static_pages#home'
+
   get 'votes/create'
 
   get    'signup', to: 'users#new'
@@ -12,6 +14,4 @@ Rails.application.routes.draw do
   resources :articles do
     patch 'votes', to: 'votes#create'
   end
-  
-  root 'articles#index'
 end
