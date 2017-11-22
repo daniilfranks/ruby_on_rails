@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'session/destroy'
 
+  resources :posts
+  resources :students
   resources :users
   resources :articles do
     patch 'votes', to: 'votes#create'

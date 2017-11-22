@@ -10,6 +10,9 @@ rails g controller votes create
 
 rails g controller static_pages home
 rails g model student f_name:string l_name:string
+rails g controller students
+
+rails g scaffold posts title:string description:string
 
 rails db:migrate
 rails db:migrate RAILS_ENV=test

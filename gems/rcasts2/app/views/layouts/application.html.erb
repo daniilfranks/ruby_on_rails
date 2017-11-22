@@ -12,6 +12,7 @@
     <ul>
       <li><a href="/users">Users</a></li>
       <li><a href="/articles">Articles</a></li>
+      <li><a href="/students">Students</a></li>
       <% if current_user %>
         <li><%= link_to 'Logout', logout_path, method: :delete %></li>
       <% else %>

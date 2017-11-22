@@ -1,0 +1,8 @@
+<h1>Students</h1>
+
+<% @students.each do |student| %>
+  <p><%= student.f_name %></p>
+  <p><%= student.l_name %></p>
+  <p><%= link_to 'Show', student %></p>
+  <br>
+<% end %>
