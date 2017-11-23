@@ -58,6 +58,7 @@ group :development, :test do
   gem 'guard-rubocop'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'better_errors'
 end
 
 group :development do
