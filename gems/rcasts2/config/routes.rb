@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
+  get "students/:id/activate", to: 'students#activate', as: 'activate_student'
   get 'votes/create'
 
   get    'signup', to: 'users#new'

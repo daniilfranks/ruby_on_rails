@@ -14,6 +14,9 @@ rails g controller students
 
 rails g scaffold posts title:string description:string
 
+rails g migration AddactiveToStudents active:boolean
+add_column :students, :active, :boolean, default: :false
+
 rails db:migrate
 rails db:migrate RAILS_ENV=test
 
@@ -48,3 +51,9 @@ rspec
 rails stats
 
 rails g rspec:controller statik_page
+
+
+#http://matchers.shoulda.io/docs/v3.1.1/
+#http://www.rubydoc.info/github/teamcapybara/capybara/master
+#https://devhints.io/capybara
+#https://relishapp.com/rspec/rspec-expectations/v/3-7/docs

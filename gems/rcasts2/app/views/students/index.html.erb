@@ -3,6 +3,7 @@
 <% @students.each do |student| %>
   <p><%= student.f_name %></p>
   <p><%= student.l_name %></p>
+  <p><%= student.active %></p>
   <p><%= link_to 'Show', student %></p>
   <br>
 <% end %>

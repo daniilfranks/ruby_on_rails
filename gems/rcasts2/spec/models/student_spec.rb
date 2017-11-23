@@ -16,4 +16,8 @@ RSpec.describe Student, type: :model do
   it 'has a l_name instance variable' do
     expect(@student.l_name).to eq('Babanov')
   end
+
+  it 'has an active attribute that defaults to false' do
+    expect(@student.active).to eq(false)
+  end
 end
