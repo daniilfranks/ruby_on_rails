@@ -17,6 +17,10 @@ rails g scaffold posts title:string description:string
 rails g migration AddactiveToStudents active:boolean
 add_column :students, :active, :boolean, default: :false
 
+rails g model product name:string price:decimal
+rails g model cart 
+rails g model cart_products cart:references product:references
+
 rails db:migrate
 rails db:migrate RAILS_ENV=test
 

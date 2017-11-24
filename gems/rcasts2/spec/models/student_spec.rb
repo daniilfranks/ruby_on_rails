@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
-  before(:each) do
+  before do
     @student = create(:student)
   end
 
