@@ -2,8 +2,8 @@
 lib/tasks/myrake.rake
 rake first:hello
 
-rails g scaffold articles title:string description:text is_published:boolean user:references
-rails g scaffold users name:string email:string password_digest:string banned:boolean
+rails g scaffold articles title:string description:text is_published:boolean user:references --no-test-framework
+rails g scaffold users name:string email:string password_digest:string banned:boolean --no-test-framework
 rails g controller session new create destroy
 rails g model vote article:references user:references
 rails g controller votes create
@@ -12,7 +12,7 @@ rails g controller static_pages home
 rails g model student f_name:string l_name:string
 rails g controller students
 
-rails g scaffold posts title:string description:string
+rails g scaffold posts title:string description:string --no-test-framework
 
 rails g migration AddactiveToStudents active:boolean
 add_column :students, :active, :boolean, default: :false
@@ -20,6 +20,16 @@ add_column :students, :active, :boolean, default: :false
 rails g model product name:string price:decimal
 rails g model cart 
 rails g model cart_products cart:references product:references
+
+rails g scaffold categories name:string
+rails g migration Addcategory_idToPosts
+add_column :posts, :category_id, :integer
+
+rails g migration Adduser_idToPosts
+add_column :posts, :user_id, :integer
+
+rails g scaffold tags name:string --no-test-framework
+rails g scaffold post_tags post:references tag:references --no-test-framework
 
 rails db:migrate
 rails db:migrate RAILS_ENV=test
