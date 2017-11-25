@@ -23,6 +23,11 @@
         <li><%= link_to 'Sign up', signup_path %></li>
       <% end %>
     </ul>
+
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
