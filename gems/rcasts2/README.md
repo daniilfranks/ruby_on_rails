@@ -71,3 +71,11 @@ rails g rspec:controller statik_page
 #http://www.rubydoc.info/github/teamcapybara/capybara/master
 #https://devhints.io/capybara
 #https://relishapp.com/rspec/rspec-expectations/v/3-7/docs
+
+# rendering
+<%= render partial: 'authors/author', locals: { post_author: @post.author } %>
+
+# _author.html.erb
+<%= post_author.name %>
+<%= post_author.hometown %>
+
