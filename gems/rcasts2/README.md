@@ -5,6 +5,7 @@ rake first:hello
 rails g scaffold articles title:string description:text is_published:boolean user:references --no-test-framework
 rails g scaffold users name:string email:string password_digest:string banned:boolean --no-test-framework
 rails g controller session new create destroy
+rails g controller sessions new --no-helper --no-assets --no-controller-specs
 rails g model vote article:references user:references
 rails g controller votes create
 
@@ -30,6 +31,9 @@ add_column :posts, :user_id, :integer
 
 rails g scaffold tags name:string --no-test-framework
 rails g scaffold post_tags post:references tag:references --no-test-framework
+
+rails g scaffold products title:string price:decimal{8,2}
+add_column :products, :price, :decimal, precision: 8, scale: 2
 
 rails db:migrate
 rails db:migrate RAILS_ENV=test

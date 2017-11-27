@@ -7,10 +7,13 @@
   <li><a href="/posts">Posts</a></li>
   <li><a href="/categories">Category</a></li>
   <li><a href="/tags">Tags</a></li>
+  <li><a href="/products">Products</a></li>
   <% if current_user %>
     <li><%= link_to 'Logout', logout_path, method: :delete %></li>
   <% else %>
     <li><%= link_to 'Sign in', login_path %></li>
     <li><%= link_to 'Sign up', signup_path %></li>
   <% end %>
+
+  <li><a href="/carts"> <%= cart.id %></a></li>
 </ul>

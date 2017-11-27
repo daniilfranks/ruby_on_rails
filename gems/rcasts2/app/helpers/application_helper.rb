@@ -3,6 +3,13 @@ module ApplicationHelper
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
+  def cart
+    @cart = Cart.find(session[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+    @cart = Cart.create
+    session[:cart_id] = @cart.id
+  end
+
   def logged_in?
     !@current_user.nil?
   end

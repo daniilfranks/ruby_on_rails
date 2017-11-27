@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :categories
   root 'static_pages#home'
 
+  get  'products', to: 'products#index'
+  post 'products', to: 'products#add'
+  delete 'products', to: 'products#destroy'
+
   get "students/:id/activate", to: 'students#activate', as: 'activate_student'
   get 'votes/create'
 
