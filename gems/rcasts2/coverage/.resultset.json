@@ -1,17 +1,26 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/boban/ruby_on_rails/gems/rcasts2/spec/models/cart_spec.rb": [
+      "/home/boban/ruby_on_rails/gems/rcasts2/spec/features/admin/admin_spec.rb": [
         1,
         null,
         1,
-        2,
-        2,
-        null,
+        1,
         1,
         1,
         null,
         1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
         null,
         null
       ],
@@ -293,6 +302,9 @@
         1,
         1,
         1,
+        null,
+        1,
+        1,
         1,
         1,
         null,
@@ -396,25 +408,46 @@
         null,
         null,
         1,
-        1,
+        2,
         null,
         null,
         1,
-        0,
+        2,
         null,
         null,
         1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null
+      ],
+      "/home/boban/ruby_on_rails/gems/rcasts2/app/controllers/admin_controller.rb": [
+        1,
         1,
         null,
+        1,
         null,
         1,
         1,
         null,
         null
       ],
-      "/home/boban/ruby_on_rails/gems/rcasts2/app/models/cart.rb": [
+      "/home/boban/ruby_on_rails/gems/rcasts2/app/controllers/application_controller.rb": [
         1,
         1,
+        null,
+        1,
+        null
+      ],
+      "/home/boban/ruby_on_rails/gems/rcasts2/app/models/user.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
         1,
         null
       ],
@@ -422,20 +455,8 @@
         1,
         1,
         null
-      ],
-      "/home/boban/ruby_on_rails/gems/rcasts2/app/models/product.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/home/boban/ruby_on_rails/gems/rcasts2/app/models/cart_product.rb": [
-        1,
-        1,
-        1,
-        null
       ]
     },
-    "timestamp": 1511617463
+    "timestamp": 1511772041
   }
 }

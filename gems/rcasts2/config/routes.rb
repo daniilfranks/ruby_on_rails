@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'admin', to: 'admin#index'
+  get 'admin/users', to: 'admin#users'
+
   resources :post_tags
   resources :tags
   resources :categories
