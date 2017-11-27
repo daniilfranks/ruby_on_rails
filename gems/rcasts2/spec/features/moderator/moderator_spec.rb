@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe 'Admin' do
+describe 'Moderator' do
   context 'index page' do
-    scenario 'shows the title on the admin page in an h1 tag' do
-      visit '/admin'
+    scenario 'shows the title on the moderator page in an h1 tag' do
+      visit '/moderator'
 
       expect(page).to have_css('h1', 'Dashboard') 
       expect(page).to have_css('h1', 'Index page')
@@ -11,8 +11,8 @@ describe 'Admin' do
   end
 
   context 'users page' do
-    scenario 'shows the title on the admin users page in an h1 tag' do
-      visit '/admin/users'
+    scenario 'shows the title on the moderator users page in an h1 tag' do
+      visit '/moderator/users'
 
       expect(page).to have_css('h1', 'Dashboard') 
       expect(page).to have_css('h1', 'Users')

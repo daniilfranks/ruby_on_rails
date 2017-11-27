@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'admin', to: 'admin#index'
-  get 'admin/users', to: 'admin#users'
+  get 'moderator', to: 'moderator#index'
+  get 'moderator/users', to: 'moderator#users'
 
   resources :post_tags
   resources :tags
@@ -22,5 +22,9 @@ Rails.application.routes.draw do
   resources :users
   resources :articles do
     patch 'votes', to: 'votes#create'
+  end
+
+  namespace :admin do
+    resources :stats, only: [:index]
   end
 end

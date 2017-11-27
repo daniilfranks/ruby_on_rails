@@ -10,4 +10,12 @@ module ApplicationHelper
   def hide_page
     redirect_to root_path unless logged_in?
   end
+
+  def display_link
+    if logged_in?
+      link_to 'Google', 'https://google.ru'
+    else
+      link_to 'Yandex', 'https://yandex.ru'
+    end
+  end
 end

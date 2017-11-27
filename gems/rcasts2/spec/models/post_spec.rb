@@ -36,4 +36,8 @@ RSpec.describe Post, type: :model do
   it 'has many tags' do
     expect(post.tags.count).to eq(2)
   end
+
+  it "queries for posts today" do
+    expect(Post.from_today.count).to eq(1)
+  end
 end

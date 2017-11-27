@@ -7,4 +7,8 @@ class Post < ApplicationRecord
 
   has_many :post_tags
   has_many :tags, through: :post_tags, dependent: :destroy
+
+  def self.from_today
+    where("created_at >=?", Time.zone.today.beginning_of_day)
+  end
 end

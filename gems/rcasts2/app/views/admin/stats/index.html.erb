@@ -1,0 +1,13 @@
+<h1>Blog Stats</h1>
+
+<p>Number of Posts: <%= @post_count %></p>
+<p>Number of Users: <%= @users_count %></p>
+<p>Latest Post: <%= @last_post.created_at %></p>
+
+<h1>From today</h1>
+
+<% @from_today.each do |ft| %>
+  <%= ft.title %><br>
+  <%= ft.description %><br>
+  <%= link_to 'Show', ft %><br>
+<% end %>
