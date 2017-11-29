@@ -87,6 +87,7 @@ rails g migration add_password_digest_to_users password_digest:string
 
 rails db:migrate
 rails db:migrate RAILS_ENV=test
+rails db:migrate RAILS_ENV=production
 
 rails c
 User.create(name: 'Danila', email: 'danila_babanov@yahoo.com', password: '123456', password_confirmation: '123456')
