@@ -1,5 +1,3 @@
-rails g controller static_pages home
-
 # Test
 Gemfile
   gem 'bullet'
@@ -76,3 +74,19 @@ coverage
 
 rspec
 /home/boban/ruby_on_rails/gems/rcasts/coverage
+
+# Static pages
+rails g controller static_pages home
+
+rails g controller users new --no-test-framework
+rails g model user name:string email:string
+rails g migration add_index_to_users_email
+add_index :users, :email, unique: true
+
+rails g migration add_password_digest_to_users password_digest:string
+
+rails db:migrate
+rails db:migrate RAILS_ENV=test
+
+rails c
+User.create(name: 'Danila', email: 'danila_babanov@yahoo.com', password: '123456', password_confirmation: '123456')
