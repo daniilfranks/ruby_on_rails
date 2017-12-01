@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Users' do
   let!(:user) { create(:user) }
+  let!(:user2) { create(:user, name: 'Mamkin_Hacker', email: 'mh@example.com', password: '123456') }
 
   context 'new page' do
     scenario 'renders HTML in the /new template' do
@@ -54,6 +55,64 @@ describe 'Users' do
 
       click_on 'Logout'
       expect(page).to have_link('Login', visible: false)
+    end
+
+    scenario 'Fail edit profile' do
+      visit login_path
+      
+      fill_in 'user_email', with: 'danila_babanov@yahoo.com'
+      fill_in 'user_password', with: '123456'
+
+      click_on 'Log in'
+
+      page.find('button.navbar-toggler').click
+      page.find('a.nav-link', text: 'Account').click
+      click_on 'Settings'
+
+      expect(page).to have_css('h1', text: 'Update your profile')
+      
+      fill_in 'user_name', with: ''
+      fill_in 'user_email', with: ''
+      fill_in 'user_password', with: ''
+      fill_in 'user_password_confirmation', with: ''
+      click_on 'Save changes'
+
+      expect(page.find('div.alert.alert-danger')).to have_content("The form contains 3 errors.")
+    end
+
+    scenario 'redirect edit when logged in as wrong user' do
+      visit '/users/1/edit'
+      expect(page.find('div.alert.alert-danger')).to have_content("Please log in.")
+    end
+
+    scenario 'redirect edit when logged in as wrong user' do
+      visit login_path
+      
+      fill_in 'user_email', with: 'danila_babanov@yahoo.com'
+      fill_in 'user_password', with: '123456'
+
+      click_on 'Log in'
+
+      visit '/users/2/edit'
+      expect(page).to have_css('h1', text: 'Home')
+    end
+
+    scenario 'successful edit with friendly forwarding' do
+      visit '/users/1/edit'
+      
+      expect(page.find('div.alert.alert-danger')).to have_content("Please log in.")
+
+      fill_in 'user_email', with: 'danila_babanov@yahoo.com'
+      fill_in 'user_password', with: '123456'
+
+      click_on 'Log in'
+
+      expect(page).to have_css('h1', text: 'Update your profile')
+    end
+
+    scenario 'redirect index when logged in as wrong user' do
+      visit users_path
+      expect(page.find('div.alert.alert-danger')).to have_content("Please log in.")
     end
   end
 end

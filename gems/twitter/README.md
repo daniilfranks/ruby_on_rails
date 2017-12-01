@@ -84,8 +84,8 @@ rails g migration add_index_to_users_email
 add_index :users, :email, unique: true
 
 rails g migration add_password_digest_to_users password_digest:string
-
 rails g controller sessions new --no-test-framework
+rails g migration add_remember_digest_to_users remember_digest:string
 
 rails db:migrate
 rails db:migrate RAILS_ENV=test
@@ -93,3 +93,20 @@ rails db:migrate RAILS_ENV=production
 
 rails c
 User.create(name: 'Danila', email: 'danila_babanov@yahoo.com', password: '123456', password_confirmation: '123456')
+
+rails db:seed
+
+# Kaminari
+gem 'kaminari'
+
+rails g kaminari:config
+config/initializers/kaminari_config.rb
+config.default_per_page = 10
+
+controller
+User.page params[:page]
+
+index.html.erb
+<%= paginate @users %>
+
+rails g kaminari:views default

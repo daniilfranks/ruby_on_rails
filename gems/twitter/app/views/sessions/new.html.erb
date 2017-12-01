@@ -13,6 +13,13 @@
     <%= f.password_field :password, class: 'form-control', placeholder: 'Password' , id: :user_password %>
   </div>
 
+  <div class="form-check">
+    <label class="form-check-label">
+      <%= f.check_box :remember_me, class: 'form-check-input', id: :user_remember_me %>
+      <span>Remember me on this computer</span>
+    </label>
+  </div>
+
   <%= f.submit "Log in", class: "btn btn-primary" %>
 <% end %>
 
