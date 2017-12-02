@@ -1,10 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, name: 'Danila', email: 'danila_babanov@yahoo.com', admin: true) }
 
   it 'should be valid' do
     expect(user).to be_valid
+  end
+
+  it 'user admin?' do
+    expect(user.admin).to eq(true)
   end
 
   it 'has a name instance variable' do

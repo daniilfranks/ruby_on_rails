@@ -86,6 +86,7 @@ add_index :users, :email, unique: true
 rails g migration add_password_digest_to_users password_digest:string
 rails g controller sessions new --no-test-framework
 rails g migration add_remember_digest_to_users remember_digest:string
+rails g migration add_admin_to_users admin:boolean
 
 rails db:migrate
 rails db:migrate RAILS_ENV=test

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Users' do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, name: 'Danila', email: 'danila_babanov@yahoo.com', admin: true) }
   let!(:user2) { create(:user, name: 'Mamkin_Hacker', email: 'mh@example.com', password: '123456') }
 
   context 'new page' do
@@ -85,6 +85,11 @@ describe 'Users' do
       expect(page.find('div.alert.alert-danger')).to have_content("Please log in.")
     end
 
+    scenario 'redirect index when logged in as wrong user' do
+      visit '/users'
+      expect(page.find('div.alert.alert-danger')).to have_content("Please log in.")
+    end
+
     scenario 'redirect edit when logged in as wrong user' do
       visit login_path
       
@@ -113,6 +118,61 @@ describe 'Users' do
     scenario 'redirect index when logged in as wrong user' do
       visit users_path
       expect(page.find('div.alert.alert-danger')).to have_content("Please log in.")
+    end
+
+    context 'Pagination' do
+      before do 
+        30.times { create(:user) }
+      end
+
+      scenario 'index including pagination' do
+        visit login_path
+      
+        fill_in 'user_email', with: 'danila_babanov@yahoo.com'
+        fill_in 'user_password', with: '123456'
+
+        click_on 'Log in'
+
+        visit users_path
+
+        page.find('button.navbar-toggler').click
+        page.find('a.nav-link', text: 'Users').click
+        
+        expect(page).to have_css('a.page-link', text: '1')
+        expect(page).to have_css('a.page-link', text: '2')
+        expect(page).to have_css('a.page-link', text: '3')
+        expect(page).to have_css('a.page-link', text: '4')
+        expect(page).to have_css('a.page-link', text: 'Next')
+        expect(page).to have_css('a.page-link', text: 'Last')
+      end
+
+      scenario 'index as admin including pagination and delete links' do
+        visit login_path
+      
+        fill_in 'user_email', with: 'danila_babanov@yahoo.com'
+        fill_in 'user_password', with: '123456'
+
+        click_on 'Log in'
+
+        page.find('button.navbar-toggler').click
+        page.find('a.nav-link', text: 'Users').click
+
+        expect(user.admin).to eq(true)
+        expect(page).to have_css('a', text: 'Delete')
+        page.assert_selector('a', count: 9, text: 'Delete')
+        expect(User.count).to eq(32)
+
+        click_link('Delete', match: :first)
+
+        #page.click_link('', href: '/users/5', text: 'Delete').click
+
+        #click_button 'OK'
+        accept_alert do
+          click_on 'OK'
+        end
+
+        #expect(User.count).to eq(31)
+      end
     end
   end
 end

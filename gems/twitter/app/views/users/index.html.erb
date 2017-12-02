@@ -4,8 +4,7 @@
 <%= paginate @users %>
 
 <% @users.each do |user| %>
-  <p><%= gravatar_for(user) %></p>
-  <p><%= link_to user.name, user %></p>
+  <%= render user %>
 <% end %>
 
 <%= paginate @users %>
