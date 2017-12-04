@@ -88,14 +88,19 @@ rails g controller sessions new --no-test-framework
 rails g migration add_remember_digest_to_users remember_digest:string
 rails g migration add_admin_to_users admin:boolean
 
+rails g controller AccountActivations --no-test-framework
+rails g migration add_activation_to_users activation_digest:string activated:boolean activated_at:datetime
+add_column :users, :activated, :boolean, default: false
+
 rails db:migrate
 rails db:migrate RAILS_ENV=test
 rails db:migrate RAILS_ENV=production
 
+rails db:migrate:reset
+rails db:seed
+
 rails c
 User.create(name: 'Danila', email: 'danila_babanov@yahoo.com', password: '123456', password_confirmation: '123456')
-
-rails db:seed
 
 # Kaminari
 gem 'kaminari'
@@ -116,3 +121,34 @@ rails g kaminari:views default
 # capybara-webkit'
 sudo apt-get update
 sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+
+# Mailer
+rails g mailer UserMailer account_activation password_reset
+
+# rails c
+# @user = User.last
+# UserMailer.account_activation(@user).deliver_now
+# http://localhost:3000/rails/mailers/user_mailer/account_activation.html
+
+# Dotenv
+config/application.rb
+Dotenv::Railtie.load
+
+create file .env
+export EXAMPLE_ENV="A1B2C3"
+
+add .env to .gitignore
+
+ENV['EXAMPLE_ENV']
+
+# SENDGRID
+config/environment.rb
+ActionMailer::Base.smtp_settings = {
+  user_name: ENV['SEND_GRID_NAME'],
+  password: ENV['SEND_GRID_API'],
+  domain: 'localhost:3000',
+  address: 'smtp.sendgrid.net',
+  port: 587,
+  authentication: :plain,
+  enable_starttls_auto: true
+}

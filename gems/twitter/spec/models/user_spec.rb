@@ -19,6 +19,10 @@ RSpec.describe User, type: :model do
     expect(user.email).to eq('danila_babanov@yahoo.com')
   end
 
+  it 'user activated?' do
+    expect(user.activated?).to eq(false)
+  end
+
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:email) }
 

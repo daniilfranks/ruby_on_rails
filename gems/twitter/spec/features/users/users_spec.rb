@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Users' do
-  let!(:user) { create(:user, name: 'Danila', email: 'danila_babanov@yahoo.com', admin: true) }
+  let!(:user) { create(:user, name: 'Danila', email: 'danila_babanov@yahoo.com', admin: true, activated: true, activated_at: Time.zone.now) }
   let!(:user2) { create(:user, name: 'Mamkin_Hacker', email: 'mh@example.com', password: '123456') }
 
   context 'new page' do
@@ -10,7 +10,7 @@ describe 'Users' do
       expect(page).to have_content('Sign up')
     end
 
-    scenario 'signup user' do
+    scenario 'valid signup information' do
       visit signup_path
       
       fill_in 'user_name', with: 'Jok'
@@ -20,8 +20,20 @@ describe 'Users' do
 
       click_on 'Create my account'
 
-      expect(page).to have_css('p', text: 'Jok')
-      expect(page).to have_css('p', text: 'jok@example.com')
+      expect(page).to have_css('h1', text: 'Home')
+      expect(page.find('div.alert.alert-success')).to have_content("Please check your email to activate your account.")
+    end
+
+    scenario 'valid signup information with account activation' do
+      visit edit_account_activation_path(user2.activation_token, email: user2.email)
+
+      expect(page).to have_content('Account activated!')
+
+      expect(page).to have_css('p', text: 'Mamkin_Hacker')
+      expect(page).to have_css('p', text: 'mh@example.com')
+
+      #p page.text
+      #p page.current_path
     end
 
     scenario 'login user' do
