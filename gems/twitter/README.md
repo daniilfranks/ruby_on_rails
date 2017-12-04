@@ -111,3 +111,8 @@ index.html.erb
 <%= paginate @users %>
 
 rails g kaminari:views default
+
+
+# capybara-webkit'
+sudo apt-get update
+sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x

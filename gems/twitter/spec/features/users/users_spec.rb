@@ -146,7 +146,7 @@ describe 'Users' do
         expect(page).to have_css('a.page-link', text: 'Last')
       end
 
-      scenario 'index as admin including pagination and delete links' do
+      scenario 'index as admin including pagination and delete links', js: true do
         visit login_path
       
         fill_in 'user_email', with: 'danila_babanov@yahoo.com'
@@ -154,7 +154,6 @@ describe 'Users' do
 
         click_on 'Log in'
 
-        page.find('button.navbar-toggler').click
         page.find('a.nav-link', text: 'Users').click
 
         expect(user.admin).to eq(true)
@@ -162,16 +161,29 @@ describe 'Users' do
         page.assert_selector('a', count: 9, text: 'Delete')
         expect(User.count).to eq(32)
 
-        click_link('Delete', match: :first)
-
-        #page.click_link('', href: '/users/5', text: 'Delete').click
-
-        #click_button 'OK'
-        accept_alert do
-          click_on 'OK'
+        page.click_link('', href: '/users/3', text: 'Delete')
+        
+        page.driver.browser.accept_js_confirms do
+          click_button 'OK'
         end
 
-        #expect(User.count).to eq(31)
+        expect(User.count).to eq(31)
+      end
+
+      scenario 'not delete links' do
+        visit login_path
+      
+        fill_in 'user_email', with: 'mh@example.com'
+        fill_in 'user_password', with: '123456'
+
+        click_on 'Log in'
+
+        page.find('button.navbar-toggler').click
+        page.find('a.nav-link', text: 'Users').click
+
+        expect(user2.admin).to eq(false)
+        expect(page).not_to have_css('a', text: 'Delete')
+        page.assert_selector('a', count: 0, text: 'Delete')
       end
     end
   end
