@@ -36,6 +36,25 @@ describe 'Users' do
       #p page.current_path
     end
 
+    scenario 'password resets' do
+      visit new_password_reset_path
+
+      expect(page).to have_content('Forgot password')
+      fill_in 'user_email', with: 'danila_babanov@yahoo.com'
+      click_on 'Submit'
+
+      expect(page.find('div.alert.alert-success')).to have_content("Email sent with password reset instructions")
+    end
+
+    scenario 'password resets and edit password' do
+      #user2.activate
+      #user2.create_reset_digest
+
+      #visit edit_password_reset_url(user2.reset_token, email: user2.email)
+
+      #p page.text
+    end
+
     scenario 'login user' do
       visit login_path
       

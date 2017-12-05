@@ -92,6 +92,16 @@ rails g controller AccountActivations --no-test-framework
 rails g migration add_activation_to_users activation_digest:string activated:boolean activated_at:datetime
 add_column :users, :activated, :boolean, default: false
 
+rails g controller PasswordResets new edit --no-test-framework
+rails g migration add_reset_to_users reset_digest:string reset_sent_at:datetime
+
+rails g model micropost content:text user:references
+add_index :microposts, [:created_at]
+
+rails g controller microposts --no-test-framework
+
+rails g migration add_picture_to_microposts picture:string
+
 rails db:migrate
 rails db:migrate RAILS_ENV=test
 rails db:migrate RAILS_ENV=production
@@ -152,3 +162,9 @@ ActionMailer::Base.smtp_settings = {
   authentication: :plain,
   enable_starttls_auto: true
 }
+
+# Carrierwave
+rails generate uploader Picture
+
+sudo apt-get update
+sudo apt-get install imagemagick --fix-missing

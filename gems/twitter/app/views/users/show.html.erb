@@ -3,3 +3,13 @@
 <p><%= gravatar_for(@user) %></p>
 <p><%= @user.name %></p>
 <p><%= @user.email %></p>
+
+
+<% if @user.microposts.any? %>
+  <h3>Microposts (<%= @user.microposts.count %>)</h3>
+  <ol class="microposts">
+    <%= render @microposts %>
+  </ol>
+  <%= paginate @microposts %>
+<% end %>
+
