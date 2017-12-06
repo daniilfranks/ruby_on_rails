@@ -45,5 +45,22 @@ RSpec.describe User, type: :model do
   it { should validate_length_of(:password).is_at_least(6) }
 end
 
+describe 'Feed' do
+  let!(:user) { create(:user, name: 'Danila', email: 'danila_babanov@yahoo.com', admin: true, activated: true, activated_at: Time.zone.now) }
+  let!(:user2) { create(:user, activated: true, activated_at: Time.zone.now) }
+  let!(:user3) { create(:user, activated: true, activated_at: Time.zone.now) }
+  let!(:relationship) { Relationship.create(follower_id: user.id, followed_id: user2.id) }
+  let!(:relationship) { Relationship.create(follower_id: user.id, followed_id: user3.id) }
+
+  before do
+    users = User.all
+    users.each { |user| 5.times { create(:micropost, user_id: user.id) } }
+  end
+
+  it 'feed user' do
+    expect(user.feed.includes(:user).count).to eq(10)
+  end
+end
+
 
 
