@@ -10,9 +10,9 @@ module ApplicationHelper
       notice: 'alert-info' }[flash_type.to_sym] || flash_type.to_s
   end
 
-  def gravatar_for(user)
+  def gravatar_for(user, size: 90)
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
-    image_tag(gravatar_url, alt: user.name, class: 'gravatar')
+    image_tag(gravatar_url, alt: user.name, class: 'gravatar', size: size)
   end
 end

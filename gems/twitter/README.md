@@ -102,6 +102,13 @@ rails g controller microposts --no-test-framework
 
 rails g migration add_picture_to_microposts picture:string
 
+rails g model relationship follower_id:integer followed_id:integer --no-test-framework
+add_index :relationships, :follower_id
+add_index :relationships, :followed_id
+add_index :relationships, [:follower_id, :followed_id], unique: true
+
+rails g controller relationships --no-test-framework
+
 rails db:migrate
 rails db:migrate RAILS_ENV=test
 rails db:migrate RAILS_ENV=production
@@ -111,6 +118,17 @@ rails db:seed
 
 rails c
 User.create(name: 'Danila', email: 'danila_babanov@yahoo.com', password: '123456', password_confirmation: '123456')
+
+active_relationship.follower
+active_relationship.followed
+
+user = User.first
+user2.last
+
+user.active_relationships.create(followed_id: user2.id)
+user.active_relationships.create(followed_id: user.id)
+
+user.active_relationships.build(followed_id: user.id)
 
 # Kaminari
 gem 'kaminari'

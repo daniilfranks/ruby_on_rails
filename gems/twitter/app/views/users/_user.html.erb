@@ -1,7 +1,7 @@
-  <p><%= gravatar_for(user) %></p>
-  <p><%= link_to user.name, user %></p>
-  <% if current_user.admin? && !current_user?(user) %>
-    <p><%= link_to 'Delete', user, method: :delete, 
-                                   data: { confirm: 'You sure?' } %></p>
-  <% end %>
-  <hr>
+<p><%= gravatar_for(user) %></p>
+<p><%= link_to user.name, user, class: "user_link" %></p>
+<% if current_user.admin? && !current_user?(user) %>
+  <p><%= link_to 'Delete', user, method: :delete, 
+                                 data: { confirm: 'You sure?' } %></p>
+<% end %>
+<hr>
