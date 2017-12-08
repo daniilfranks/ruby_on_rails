@@ -186,3 +186,4 @@ rails generate uploader Picture
 
 sudo apt-get update
 sudo apt-get install imagemagick --fix-missing
+
