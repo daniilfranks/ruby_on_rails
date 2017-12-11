@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :cart_items
   has_many :carts
+  has_many :orders
 
   validates :title, :description, :image_url, :price, presence: true
   validates :title, uniqueness: true

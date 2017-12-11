@@ -8,6 +8,9 @@ rails g scaffold cart --no-test-framework
 rails g scaffold CartItems cart:references product:references quantity:integer --no-test-framework
 t.integer :quantity, default: 1
 
+rails g scaffold order email:string address:text --no-test-framework
+rails g migration add_order_to_cart_items order:references
+
 rails db:migrate && rails db:migrate RAILS_ENV=test
 
 rails db:migrate:reset && rails db:seed

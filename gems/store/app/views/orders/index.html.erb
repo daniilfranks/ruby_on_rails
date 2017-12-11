@@ -1,0 +1,8 @@
+<h1>Orders</h1>
+
+
+<% @orders.each do |order| %>
+  <%= order.email %>
+  <%= order.address %>
+  <%= link_to 'Show', order %>
+<% end %>
