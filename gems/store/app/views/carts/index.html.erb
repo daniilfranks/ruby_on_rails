@@ -2,11 +2,20 @@
 
 <% if current_cart %>
   <% current_cart.cart_items.includes(:product).each do |product| %>
-    <p>Id: <%= product.product.id %></p>
-    <p>Title:<%= product.product.title %></p>
+    <h5><%= link_to  product.product.title, product.product %></h5>
     <p>Price: <%= product.product.price %></p>
-    <p>Quantity: <%= product.quantity %></p>
+    <p>
+      <%= button_to '+', cart_path(product_id: product.product.id) %>
+      <%= form_for product do |form| %>
+        <%= form.hidden_field :product_id, value: product.product.id %>
+        <%= form.text_field :quantity, class: 'form-control', id: :product_quantity %>
+        <%= form.submit 'Update', class: "btn btn-primary"%>
+      <% end %>
+      <%= button_to '-', cart_path(product_id: product.product.id), method: :delete %>
+    </p>
+    <p>Total price: <%= number_to_currency(product.total_price) %></p>
   <% end %>
+  <h3>Total price: <%= number_to_currency(current_cart.total_price) %></h3>
   <%= button_to 'Empty cart', cart_items_path, method: :delete %>
 <% else %>
   "Cart empty"

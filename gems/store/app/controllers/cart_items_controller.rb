@@ -16,4 +16,15 @@ class CartItemsController < ApplicationController
     session[:cart_id] = nil
     redirect_to root_path, notice: 'Cart empty.'
   end
+
+  def update
+    @product = Product.find(params[:cart_item][:product_id])
+    @cart_items = current_cart.update_quantity_product(@product.id, params[:cart_item][:quantity].to_i)
+
+    if @cart_items.save
+      redirect_to cart_path, notice: 'Product was successfully update.'
+    else
+      redirect_to cart_path, notice: 'Error.'
+    end
+  end
 end
