@@ -11,6 +11,8 @@ t.integer :quantity, default: 1
 rails g scaffold order email:string address:text --no-test-framework
 rails g migration add_order_to_cart_items order:references
 
+rails g controller admin::products --no-test-framework
+
 rails db:migrate && rails db:migrate RAILS_ENV=test
 
 rails db:migrate:reset && rails db:seed
@@ -24,3 +26,9 @@ product3 = Product.create(title: 'Book3', description: 'text', price: 5.99, imag
 
 cart.cart_items.build(product_id: product2.id, quantity: 3)
 cart.cart_items
+
+# Transaction
+User.transaction do
+  user1.deposit(100)
+  user2.withdraw(100)
+end
