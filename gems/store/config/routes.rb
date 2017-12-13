@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'products#index'
 
+  get '/products/myrequest', to: 'products#myrequest'
+
   namespace :admin do
     resources :products
   end

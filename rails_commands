@@ -91,6 +91,10 @@ post.update_columns(post_params)
 
 post.destroy
 
+post.status.toggle
+post.count.increment
+post.count.decrement
+
 # Migration
 string, text, integer, boolean, timestamps
 
